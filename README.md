@@ -262,13 +262,10 @@ ping 10.0.2.x
 
 💰 Cost Awareness
 
-Services that incur cost:
-
-AWS Site-to-Site VPN
-
-GCP HA VPN
-
-Compute instances
+- Services that incur cost:
+- AWS Site-to-Site VPN
+- GCP HA VPN
+- Compute instances
 
 ⚠️ Always delete resources after testing.
 
