@@ -3,6 +3,7 @@
 This project demonstrates **enterprise-grade hybrid cloud networking** by establishing a **secure Site-to-Site VPN** between **Amazon Web Services (AWS)** and **Google Cloud Platform (GCP)** using **High Availability (HA) VPN** and **dynamic routing via BGP**.
 
 The objective is to allow **private resources in AWS and GCP to communicate securely over private IPs**, as if both clouds were part of the same internal network.
+
 ![AWS GCP HA Site-to-Site VPN Architecture](Gemini_Generated_Image_y2xf3ay2xf3ay2xf.png)
 ---
 
