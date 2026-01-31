@@ -24,26 +24,30 @@ This project helps you understand:
 
 ---
 
-## 🏗️ Final Architecture Overview
+graph LR
+    subgraph GCP ["Google Cloud Platform (GCP)"]
+        direction TB
+        GCPVPC["VPC: 21.0.0.0/16"]
+        GCPVM["VM Instance: 21.0.1.10"]
+        Router["Cloud Router (ASN: 65001)"]
+        GCPVPC --- GCPVM
+        GCPVPC --- Router
+    end
 
-+------------------------+        +------------------------+
-|        GCP VPC         |        |        AWS VPC         |
-|     21.0.0.0/16        |        |     10.0.0.0/16        |
-|                        |        |                        |
-|   GCP VM Instance      |        |   EC2 Instance         |
-|     21.0.1.10          |        |     10.0.2.10          |
-|                        |        |                        |
-+-----------+------------+        +------------+-----------+
-            |                                      |
-            |         HA VPN + BGP                 |
-            |    (2 Interfaces, 4 Tunnels)         |
-            |                                      |
-+-----------+------------+        +------------+-----------+
-|      Cloud Router      |        |  Virtual Private       |
-|      ASN: 65001        |        |  Gateway (VGW)         |
-|                        |        |  ASN: 64512            |
-+------------------------+        +------------------------+
+    subgraph Connectivity ["HA VPN + BGP"]
+        Tunnels["2 Interfaces | 4 Tunnels"]
+    end
 
+    subgraph AWS ["Amazon Web Services (AWS)"]
+        direction TB
+        AWSVPC["VPC: 10.0.0.0/16"]
+        EC2["EC2 Instance: 10.0.2.10"]
+        VGW["Virtual Gateway (ASN: 64512)"]
+        AWSVPC --- EC2
+        AWSVPC --- VGW
+    end
+
+    Router <==> Tunnels <==> VGW
 
 ---
 
